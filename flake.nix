@@ -10,7 +10,13 @@
         modules = [
           disko.nixosModules.disko
           ./lap02/configuration.nix
-          ./lap02/disko.nix
+        ];
+      };
+      nixosConfigurations.test = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          ./test/configuration.nix
         ];
       };
     };
