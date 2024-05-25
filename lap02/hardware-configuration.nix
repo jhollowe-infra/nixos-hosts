@@ -6,7 +6,7 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/lenovo/thinkpad/t480s"
+    # "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/lenovo/thinkpad/t480s"
   ];
 
   # enable fingerprint service
@@ -16,19 +16,6 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-
-  # fileSystems."/" = {
-  #   device = "/dev/disk/by-uuid/a5ac9ce8-5cc4-4446-8e23-c104dc29807c";
-  #   fsType = "ext4";
-  # };
-
-  # fileSystems."/boot" = {
-  #   device = "/dev/disk/by-uuid/18B6-988F";
-  #   fsType = "vfat";
-  #   options = [ "fmask=0022" "dmask=0022" ];
-  # };
-
-  # swapDevices = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

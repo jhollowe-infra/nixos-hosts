@@ -24,9 +24,9 @@
                 pool = "zroot";
               };
             };
-            swap = {
-              resumeDevice = true;
-            };
+            # swap = {
+            #   resumeDevice = true;
+            # };
           };
         };
       };

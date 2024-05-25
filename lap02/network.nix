@@ -6,6 +6,7 @@
 
 {
   networking.hostName = "lap02"; # Define your hostname.
+  networking.hostId = "448fa3bb";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking

@@ -5,19 +5,21 @@
 { config, pkgs, ... }:
 
 let
-  nixos-common = builtins.fetchGit { url = "https://github.com/jhollowe-infra/nixos-common.git"; ref = "main"; };
+  nixos-common = builtins.fetchGit { url = "https://github.com/jhollowe-infra/nixos-common.git"; ref = "main"; rev = "71cb6b701b9c4b4a73af04f303dd8bc0ecd8be7f"; };
 in
 {
   imports =
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./disko.nix
+
       ./gui.nix
-      # ./ham.nix
-      # ./network.nix
+      ./network.nix
       "${nixos-common}/user/_default.nix"
       "${nixos-common}/workloads/interactive.nix"
       "${nixos-common}/env/ny_time.nix"
+      "${nixos-common}/env/en_us_utf8.nix"
     ];
 
   users.users.jhollowe.password = "password";
@@ -28,25 +30,6 @@ in
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "America/New_York";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    # LC_TIME = "en_SE.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # users.users.jhollowe = {
