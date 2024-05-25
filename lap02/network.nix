@@ -1,12 +1,8 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { lib, ... }:
 
 {
   networking.hostName = "lap02"; # Define your hostname.
-  networking.hostId = "448fa3bb";
+  networking.hostId = lib.mkDefault "448fa3bb";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking
