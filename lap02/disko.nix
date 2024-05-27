@@ -1,4 +1,10 @@
 { lib, ... }:
+
+let
+  pool_name = "zroot";
+  dataset_base = "local";
+  starter_snapshot = "base_install";
+in
 {
   disko.devices = {
     disk = {
@@ -21,7 +27,7 @@
               size = "100%";
               content = {
                 type = "zfs";
-                pool = "zroot";
+                pool = pool_name;
               };
             };
             # swap = {
@@ -32,7 +38,7 @@
       };
     };
     zpool = {
-      zroot = {
+      "${pool_name}" = {
         type = "zpool";
         rootFsOptions = {
           canmount = "off"; # don't mount root FS, mount datasets
@@ -46,24 +52,24 @@
           # ashift = "12"; # 4096 sector size (recommended)
           autotrim = "on";
         };
-        postCreateHook = "zfs list -t snapshot -H -o name | grep -E '^zroot@blank$' || zfs snapshot zroot@blank";
+        postCreateHook = "zfs list -t snapshot -H -o name | grep -E '^${pool_name}@${starter_snapshot}$' || zfs snapshot -R ${pool_name}@${starter_snapshot}";
 
         datasets = {
-          "local/root" = {
+          "${dataset_base}/root" = {
             type = "zfs_fs";
             mountpoint = "/";
             options.mountpoint = "/";
             options."com.sun:auto-snapshot" = "true";
           };
 
-          "local/home" = {
+          "${dataset_base}/home" = {
             type = "zfs_fs";
             mountpoint = "/home";
             options.mountpoint = "/home";
             options."com.sun:auto-snapshot" = "true";
           };
 
-          "local/nix" = {
+          "${dataset_base}/nix" = {
             type = "zfs_fs";
             mountpoint = "/nix";
             options.mountpoint = "/nix";
