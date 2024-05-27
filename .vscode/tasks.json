@@ -4,27 +4,15 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Rebuild NixOS ('test')",
-      "type": "shell",
-      "command": "sudo nixos-rebuild --no-build-output test",
-      "problemMatcher": [
-        {
-          "pattern": {
-            "regexp": "error:"
-          }
-        }
-      ]
-    },
-    {
       "label": "Clean/GC Nix Store",
       "type": "shell",
-      "command": "sudo nix-collect-garbage",
+      "command": "sudo nix-store --gc",
       "problemMatcher": []
     },
     {
       "label": "Clean & Optimize Nix Store",
       "type": "shell",
-      "command": "sudo nix-collect-garbage; echo \"Optimizing...\" ; sudo nix-store --optimise",
+      "command": "sudo nix-store --gc; echo \"Optimizing...\" ; sudo nix-store --optimise",
       "problemMatcher": []
     }
   ]

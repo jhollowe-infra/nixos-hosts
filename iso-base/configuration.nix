@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, ... }:
 let
   nixos-common = builtins.fetchGit {
     url = "https://github.com/jhollowe-infra/nixos-common.git";
