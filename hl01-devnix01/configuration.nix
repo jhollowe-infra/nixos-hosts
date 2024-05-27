@@ -4,6 +4,7 @@ let
   nixos-common = builtins.fetchGit {
     url = "https://github.com/jhollowe-infra/nixos-common.git";
     ref = "main";
+    rev = "a62bd558e56243e1bf051b4fee1b72891dd560da";
   };
 in
 {
@@ -16,8 +17,14 @@ in
     "${nixos-common}/workloads/interactive.nix"
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
+
+  # use grub for BIOS and UEFI dual support
+  boot.loader.grub = {
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+  };
 
   services.openssh.enable = true;
   services.openssh.settings = {
@@ -30,8 +37,8 @@ in
     pkgs.gitMinimal
   ];
 
-  users.users.jhollowe.password = "pass4nix";
-  users.users.root.password = "pass4nix";
+  users.users.jhollowe.password = "password";
+  users.users.root.password = "password";
   users.users.root.openssh.authorizedKeys.keys = [
     # change this to your ssh key
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBrywzyq3ic8BJ+bJX0gqfmt43ROTwJz2HJFPIiUoeib tmp"

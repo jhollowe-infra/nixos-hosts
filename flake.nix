@@ -23,7 +23,7 @@
         system = "x86_64-linux";
         modules = [
           disko.nixosModules.disko
-          ./test/configuration.nix
+          ./hl01-devnix01/configuration.nix
         ];
       };
     };
