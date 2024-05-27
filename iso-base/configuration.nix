@@ -27,7 +27,6 @@ in
     };
     extraConfig = ''
       PubkeyAuthentication yes
-      PermitEmptyPasswords yes
       HostbasedAuthentication yes
     '';
   };

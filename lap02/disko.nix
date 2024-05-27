@@ -10,7 +10,7 @@ in
     disk = {
       nvme = {
         type = "disk";
-        device = lib.mkDefault "/dev/disk/by-id/nvme-INTEL_SSDPEKKF256G8L_BTHH84100C6N256B";
+        device = lib.mkDefault "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {
@@ -30,16 +30,31 @@ in
                 pool = pool_name;
               };
             };
-            # swap = {
-            #   resumeDevice = true;
-            # };
+            swap = {
+              size = "4G";
+              content = {
+                type = "swap";
+                # TODO look into hibernation in nixos
+                # https://gist.github.com/mattdenner/befcf099f5cfcc06ea04dcdd4969a221
+                # resumeDevice = true;
+              };
+            };
           };
         };
+      };
+    };
+    nodev = {
+      "/tmp" = {
+        fsType = "tmpfs";
+        mountOptions = [
+          "size=200M"
+        ];
       };
     };
     zpool = {
       "${pool_name}" = {
         type = "zpool";
+        mountpoint = null;
         rootFsOptions = {
           canmount = "off"; # don't mount root FS, mount datasets
 
@@ -47,14 +62,19 @@ in
           "com.sun:auto-snapshot" = "false";
         };
 
-        mountpoint = null;
         options = {
           # ashift = "12"; # 4096 sector size (recommended)
           autotrim = "on";
         };
-        postCreateHook = "zfs list -t snapshot -H -o name | grep -E '^${pool_name}@${starter_snapshot}$' || zfs snapshot -R ${pool_name}@${starter_snapshot}";
+        postCreateHook = "zfs list -t snapshot -H -o name | grep -E '^${pool_name}@${starter_snapshot}$' || zfs snapshot -r ${pool_name}@${starter_snapshot}";
 
         datasets = {
+          "${dataset_base}" = {
+            type = "zfs_fs";
+            mountpoint = null;
+            options.readonly = "on";
+          };
+
           "${dataset_base}/root" = {
             type = "zfs_fs";
             mountpoint = "/";
