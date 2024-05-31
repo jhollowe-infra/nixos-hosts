@@ -42,7 +42,7 @@
     # nixos-common.url = "github:jhollowe-infra/nixos-common";
   };
 
-  outputs = { self, nixpkgs, disko, ... }:
+  outputs = { self, nixpkgs, disko, sops-nix, ... }:
     {
 
       nixosConfigurations = {
@@ -50,6 +50,7 @@
           system = "x86_64-linux";
           modules = [
             disko.nixosModules.disko
+            sops-nix.nixosModules.sops
             ./lap02/configuration.nix
           ];
         };

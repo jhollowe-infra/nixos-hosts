@@ -14,7 +14,7 @@ in
       ./hardware-configuration.nix
       ./disko.nix
 
-      # ./gui.nix
+      ./gui.nix
       ./network.nix
       "${nixos-common}/user/_default.nix"
       "${nixos-common}/workloads/interactive.nix"

@@ -12,7 +12,7 @@ in
     "${nixos-common}/workloads/deep_diag.nix"
   ];
 
-  services.getty.helpLine = ''
+  services.getty.helpLine = lib.mkForce ''
     the default password for root is `password` and password SSH is enabled
     THIS IS INSECURE; DO NOT USE IN PRODUCTION!
 
