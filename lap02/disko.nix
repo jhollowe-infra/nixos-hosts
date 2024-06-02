@@ -68,6 +68,7 @@ in
           "${dataset_base}" = {
             type = "zfs_fs";
             mountpoint = null;
+            options.mountpoint = "none";
             options.readonly = "on";
           };
 
@@ -76,6 +77,7 @@ in
             mountpoint = "/";
             options.mountpoint = "/";
             options."com.sun:auto-snapshot" = "true";
+            options.readonly = "off"; #prevent inheriting from parent
           };
 
           "${dataset_base}/home" = {
@@ -83,6 +85,7 @@ in
             mountpoint = "/home";
             options.mountpoint = "/home";
             options."com.sun:auto-snapshot" = "true";
+            options.readonly = "off"; #prevent inheriting from parent
           };
 
           "${dataset_base}/nix" = {
@@ -90,6 +93,7 @@ in
             mountpoint = "/nix";
             options.mountpoint = "/nix";
             options."com.sun:auto-snapshot" = "false";
+            options.readonly = "off"; #prevent inheriting from parent
           };
         };
       };
