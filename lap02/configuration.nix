@@ -13,11 +13,12 @@ in
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./disko.nix
+      ./network.nix
 
       ./gui.nix
-      ./network.nix
-      "${nixos-common}/user/_default.nix"
+      "${nixos-common}/user"
       "${nixos-common}/workloads/interactive.nix"
+      "${nixos-common}/workloads/ssh.nix"
       "${nixos-common}/env/ny_time.nix"
       "${nixos-common}/env/en_us_utf8.nix"
     ];
@@ -34,9 +35,6 @@ in
   ];
   # Install firefox.
   programs.firefox.enable = true;
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
 
 
   # This value determines the NixOS release from which the default
