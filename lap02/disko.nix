@@ -6,6 +6,10 @@ let
   starter_snapshot = "base_install";
 in
 {
+  # UEFI bootloader
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
   disko.devices = {
     disk = {
       nvme = {
@@ -41,14 +45,6 @@ in
             };
           };
         };
-      };
-    };
-    nodev = {
-      "/tmp" = {
-        fsType = "tmpfs";
-        mountOptions = [
-          "size=200M"
-        ];
       };
     };
     zpool = {
