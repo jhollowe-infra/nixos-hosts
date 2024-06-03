@@ -1,0 +1,11 @@
+keys:
+  # - &personal_yubikey 9A83D42079F8B6FB73DD553CF828B2E9EEF0013A
+  - &lap02_test age1laz8am3kwc0txtfyfngwz9fg5873qym90y8w7ldmtjtl9avww4eqr3ap9l
+
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      # - pgp:
+      #     - *personal_yubikey
+      - age:
+          - *lap02_test

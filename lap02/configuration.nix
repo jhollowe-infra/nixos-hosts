@@ -21,6 +21,7 @@ in
       "${nixos-common}/workloads/ssh.nix"
       "${nixos-common}/env/ny_time.nix"
       "${nixos-common}/env/en_us_utf8.nix"
+      "${nixos-common}/security/sops.nix"
     ];
 
   users.users.jhollowe.password = "password";
