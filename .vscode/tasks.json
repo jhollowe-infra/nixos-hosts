@@ -4,6 +4,12 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "nixos-rebuild test",
+      "type": "shell",
+      "command": "sudo nixos-rebuild --show-trace --impure test --flake .",
+      "problemMatcher": []
+    },
+    {
       "label": "Clean/GC Nix Store",
       "type": "shell",
       "command": "nix-store --gc",
