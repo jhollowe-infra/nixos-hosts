@@ -4,7 +4,7 @@ let
   nixos-common = builtins.fetchGit {
     url = "https://github.com/jhollowe-infra/nixos-common.git";
     ref = "main";
-    rev = "71cb6b701b9c4b4a73af04f303dd8bc0ecd8be7f";
+    rev = "b2da754603d7b53b3fc245a17322d6688755aa87";
   };
 in
 {

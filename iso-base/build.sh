@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-release=${1:-23.11}
+release=${1:-24.05}
 use_flake=${2:-1}
 iso_link_name=nixos-custom-base_${release}.iso
 

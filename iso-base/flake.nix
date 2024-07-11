@@ -1,6 +1,6 @@
 {
   description = "Minimal NixOS installation media";
-  inputs.nixos.url = "nixpkgs/23.11";
+  inputs.nixos.url = "nixpkgs/24.05";
   outputs = { self, nixos }: {
     nixosConfigurations."iso-base" = nixos.lib.nixosSystem {
       system = "x86_64-linux";
