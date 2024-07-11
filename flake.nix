@@ -13,8 +13,8 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
     # Home Manager - https://github.com/nix-community/home-manager
-    # home-manager.url = "github:nix-community/home-manager/release-24.05";
-    # home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Atomic, declarative, and reproducible secret provisioning for NixOS based on sops.
     # sops-nix.url = "github:Mic92/sops-nix";
@@ -42,7 +42,8 @@
     # nixos-common.url = "github:jhollowe-infra/nixos-common";
   };
 
-  outputs = { self, nixpkgs, disko, ... }:
+  outputs = { self, nixpkgs, disko, home-manager, ... }:
+
     {
 
       nixosConfigurations = {
@@ -50,6 +51,7 @@
           system = "x86_64-linux";
           modules = [
             disko.nixosModules.disko
+            home-manager.nixosModules.home-manager
             ./lap02/configuration.nix
           ];
         };

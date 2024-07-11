@@ -14,6 +14,7 @@ in
       ./hardware-configuration.nix
       ./disko.nix
       ./network.nix
+      ./wip.nix
 
       ./gui.nix
       "${nixos-common}/user"

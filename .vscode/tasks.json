@@ -10,6 +10,12 @@
       "problemMatcher": []
     },
     {
+      "label": "nixos-rebuild switch",
+      "type": "shell",
+      "command": "sudo nixos-rebuild --show-trace switch --flake .",
+      "problemMatcher": []
+    },
+    {
       "label": "Clean/GC Nix Store",
       "type": "shell",
       "command": "nix-store --gc",
