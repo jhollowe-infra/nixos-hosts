@@ -60,6 +60,13 @@
             ./test/configuration.nix
           ];
         };
+        vps01 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            disko.nixosModules.disko
+            ./vps01/configuration.nix
+          ];
+        };
         "hl01-devnix01" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
