@@ -5,7 +5,7 @@
     hostName = "vps01";
     hostId = "74a9a1ba";
     enableIPv6 = false;
-    # usePredictableInterfaceNames = true;
+    usePredictableInterfaceNames = true;
 
     nameservers = [ "1.1.1.1" "1.0.0.1" ];
     defaultGateway = "104.153.208.1";
@@ -13,11 +13,11 @@
 
   networking.interfaces."ens3" = {
     ipv4 = {
-      addresses = [{ address = "104.153.208.168"; prefixLength = 30; }];
+      addresses = [{ address = "104.153.208.168"; prefixLength = 22; }];
     };
   };
 
-  networking.useDHCP = false;
+  networking.useDHCP = true;
 
   # Open ports in the firewall.
   networking.firewall = {
@@ -25,7 +25,7 @@
     allowPing = true;
 
     # ports exposed by docker override these settings
-    allowedTCPPorts = [ ];
-    allowedUDPPorts = [ ];
+    # allowedTCPPorts = [ ];
+    # allowedUDPPorts = [ ];
   };
 }

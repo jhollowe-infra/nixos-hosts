@@ -2,7 +2,7 @@
 
 let
   pool_name = "zroot";
-  dataset_base = "local";
+  dataset_base = "vps01";
   starter_snapshot = "base_install";
 in
 {
@@ -12,32 +12,34 @@ in
 
   # Legacy/BIOS bootloader (grub)
   boot.loader.grub.enable = true;
-  boot.loader.grub.zfsSupport = true;
+  # boot.loader.grub.zfsSupport = true;
+  # boot.loader.grub.copyKernels = true;
   # boot.loader.grub.device = lib.mkDefault "/dev/disk/by-partlabel/disk-primary-boot";
 
   disko.devices = {
     disk = {
       primary = {
         type = "disk";
-        device = lib.mkDefault "/dev/sda";
+        device = lib.mkDefault "/dev/vda";
         content = {
           type = "gpt";
           partitions = {
             # GRUB legacy/BIOS boot partition
-            boot = {
+            grub = {
               size = "1M";
               type = "EF02";
             };
-            # UEFI boot partition
-            # ESP = {
-            #   size = "512M";
-            #   type = "EF00";
-            #   content = {
-            #     type = "filesystem";
-            #     format = "vfat";
-            #     mountpoint = "/boot";
-            #   };
-            # };
+
+            # grub doesn't like booting from ZFS for some reason; this fixes that
+            boot = {
+              size = "1G";
+              content = {
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/boot";
+              };
+            };
+
             zfs = {
               size = "100%";
               content = {
@@ -45,6 +47,7 @@ in
                 pool = pool_name;
               };
             };
+
             swap = {
               size = "2G";
               content = {
@@ -55,6 +58,7 @@ in
         };
       };
     };
+
     zpool = {
       "${pool_name}" = {
         type = "zpool";
