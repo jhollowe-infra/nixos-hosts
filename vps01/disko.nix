@@ -16,11 +16,15 @@ in
   # boot.loader.grub.copyKernels = true;
   # boot.loader.grub.device = lib.mkDefault "/dev/disk/by-partlabel/disk-primary-boot";
 
+
+
   disko.devices = {
     disk = {
       primary = {
         type = "disk";
         device = lib.mkDefault "/dev/vda";
+        # this is used for the building of a disk image to write to the host since it does not have enough memory for nixos-anywhere
+        imageSize = "50G";
         content = {
           type = "gpt";
           partitions = {
