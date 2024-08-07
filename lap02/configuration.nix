@@ -14,6 +14,7 @@ in
       ./hardware-configuration.nix
       ./disko.nix
       ./network.nix
+      ./sdr.nix
       ./wip.nix
 
       ./gui.nix
