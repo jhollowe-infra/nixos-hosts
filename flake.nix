@@ -67,6 +67,21 @@
             ./hl01-devnix01/configuration.nix
           ];
         };
+        "pi04-prdradio01" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            # disko.nixosModules.disko
+            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+            ./pi04-prdradio01/configuration.nix
+            {
+              nixpkgs.config.allowUnsupportedSystem = true;
+              nixpkgs.buildPlatform.system = "x86_64-linux";
+              nixpkgs.hostPlatform.system = "aarch64-linux";
+            }
+          ];
+        };
       };
+
+      images."pi04-prdradio01" = self.nixosConfigurations."pi04-prdradio01".config.system.build.sdImage;
     };
 }
