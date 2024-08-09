@@ -42,46 +42,36 @@
     # nixos-common.url = "github:jhollowe-infra/nixos-common";
   };
 
-  outputs = { self, nixpkgs, disko, ... }:
-    {
-
-      nixosConfigurations = {
-        lap02 = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            disko.nixosModules.disko
-            ./lap02/configuration.nix
-          ];
-        };
-        test = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            disko.nixosModules.disko
-            ./test/configuration.nix
-          ];
-        };
-        "hl01-devnix01" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            disko.nixosModules.disko
-            ./hl01-devnix01/configuration.nix
-          ];
-        };
-        "pi04-prdradio01" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            # disko.nixosModules.disko
-            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-            ./pi04-prdradio01/configuration.nix
-            {
-              nixpkgs.config.allowUnsupportedSystem = true;
-              nixpkgs.buildPlatform.system = "x86_64-linux";
-              nixpkgs.hostPlatform.system = "aarch64-linux";
-            }
-          ];
-        };
+  outputs = { self, nixpkgs, disko, ... }: {
+    nixosConfigurations = {
+      lap02 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          ./lap02/configuration.nix
+        ];
       };
-
-      images."pi04-prdradio01" = self.nixosConfigurations."pi04-prdradio01".config.system.build.sdImage;
+      test = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          ./test/configuration.nix
+        ];
+      };
+      "hl01-devnix01" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          ./hl01-devnix01/configuration.nix
+        ];
+      };
+      "pi04-prdradio01" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          # disko.nixosModules.disko
+          ./pi04-prdradio01/configuration.nix
+        ];
+      };
     };
+  };
 }
