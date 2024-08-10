@@ -18,15 +18,6 @@
     fsType = "ext4";
   };
 
-  swapDevices = [
-    # { device = "/dev/disk/by-uuid/ff8e2ae2-1f91-46ce-b973-18a8768d70e7"; }
-    {
-      device = "/swapfile";
-      size = 1024; # in MB
-    }
-  ];
-  boot.kernel.sysctl."vm.swappiness" = 0;
-
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
 }
