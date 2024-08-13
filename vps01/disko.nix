@@ -12,11 +12,11 @@ in
 
   # Legacy/BIOS bootloader (grub)
   boot.loader.grub.enable = true;
-  # boot.loader.grub.zfsSupport = true;
+  boot.loader.grub.zfsSupport = true;
+  boot.zfs.devNodes = "/dev/disk/by-uuid"; # for some reason vda is not added to the default /dev/disk/by-id
   # boot.loader.grub.copyKernels = true;
-  # boot.loader.grub.device = lib.mkDefault "/dev/disk/by-partlabel/disk-primary-boot";
-
-
+  # boot.loader.grub.device = lib.mkDefault "/dev/disk/by-partlabel/disk-primary-boot
+  disko.extraRootModules = [ "zfs" ];
 
   disko.devices = {
     disk = {
@@ -32,11 +32,13 @@ in
             grub = {
               size = "1M";
               type = "EF02";
+              priority = 1;
             };
 
             # grub doesn't like booting from ZFS for some reason; this fixes that
             boot = {
               size = "1G";
+              priority = 2;
               content = {
                 type = "filesystem";
                 format = "ext4";
