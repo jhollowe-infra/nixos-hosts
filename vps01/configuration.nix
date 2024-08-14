@@ -22,7 +22,7 @@ in
       "${nixos-common}/env/en_us_utf8.nix"
     ];
 
-  users.users.jhollowe.password = "areallygreatpassword";
+  # users.users.jhollowe.password = "areallygreatpassword";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

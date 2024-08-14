@@ -6,25 +6,19 @@ let
   starter_snapshot = "base_install";
 in
 {
-  # UEFI bootloader
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
-
   # Legacy/BIOS bootloader (grub)
   boot.loader.grub.enable = true;
-  boot.loader.grub.zfsSupport = true;
   boot.zfs.devNodes = "/dev/disk/by-uuid"; # for some reason vda is not added to the default /dev/disk/by-id
-  # boot.loader.grub.copyKernels = true;
-  # boot.loader.grub.device = lib.mkDefault "/dev/disk/by-partlabel/disk-primary-boot
-  disko.extraRootModules = [ "zfs" ];
 
   disko.devices = {
     disk = {
       primary = {
         type = "disk";
         device = lib.mkDefault "/dev/vda";
+
         # this is used for the building of a disk image to write to the host since it does not have enough memory for nixos-anywhere
         imageSize = "50G";
+
         content = {
           type = "gpt";
           partitions = {
