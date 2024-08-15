@@ -8,7 +8,7 @@ let
   nixos-common = builtins.fetchGit {
     url = "https://github.com/jhollowe-infra/nixos-common.git";
     ref = "main";
-    rev = "a62bd558e56243e1bf051b4fee1b72891dd560da";
+    rev = "5a64ff89e68de9f089395a01b97733c293431658";
   };
 in
 {
@@ -19,13 +19,14 @@ in
       ./network.nix
 
       "${nixos-common}/workloads/deep_diag.nix"
+      "${nixos-common}/fs/zram_swap.nix"
 
       "${nixos-common}/user"
       "${nixos-common}/workloads/interactive.nix"
       "${nixos-common}/workloads/ssh.nix"
       "${nixos-common}/env/ny_time.nix"
       "${nixos-common}/env/en_us_utf8.nix"
-      "${nixos-common}/env/raspi.nix"
+      "${nixos-common}/env/raspi.nix" # includes swapfile
     ];
 
   # This value determines the NixOS release from which the default
@@ -35,8 +36,5 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
-
-  boot.kernel.sysctl."vm.swappiness" = 1;
 
 }

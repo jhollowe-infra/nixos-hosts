@@ -4,9 +4,6 @@
 
 { config, pkgs, ... }:
 
-let
-  vars = import ./vars.nix;
-in
 {
   networking = {
     hostName = "pi04-prdradio01";
