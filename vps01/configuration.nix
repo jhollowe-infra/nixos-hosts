@@ -4,7 +4,7 @@ let
   nixos-common = builtins.fetchGit {
     url = "https://github.com/jhollowe-infra/nixos-common.git";
     ref = "main";
-    rev = "b2da754603d7b53b3fc245a17322d6688755aa87";
+    rev = "5a64ff89e68de9f089395a01b97733c293431658";
   };
 in
 {
@@ -20,6 +20,7 @@ in
       "${nixos-common}/workloads/ssh.nix"
       "${nixos-common}/env/ny_time.nix"
       "${nixos-common}/env/en_us_utf8.nix"
+      "${nixos-common}/fs/zram_swap.nix"
     ];
 
   # users.users.jhollowe.password = "areallygreatpassword";
@@ -27,8 +28,6 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
   ];
 
