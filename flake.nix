@@ -67,6 +67,12 @@
             ./vps01/configuration.nix
           ];
         };
+        wsl = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./wsl/configuration.nix
+          ];
+        };
         "hl01-devnix01" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
