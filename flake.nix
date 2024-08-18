@@ -12,6 +12,9 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
+    # NixOS on Windows Subsystem for Linux (WSL)
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+
     # Home Manager - https://github.com/nix-community/home-manager
     # home-manager.url = "github:nix-community/home-manager/release-24.05";
     # home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -42,7 +45,7 @@
     # nixos-common.url = "github:jhollowe-infra/nixos-common";
   };
 
-  outputs = { self, nixpkgs, disko, ... }:
+  outputs = { self, nixpkgs, disko, nixos-wsl, ... }:
     {
 
       nixosConfigurations = {
@@ -70,6 +73,7 @@
         wsl = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+            nixos-wsl.nixosModules.default
             ./wsl/configuration.nix
           ];
         };

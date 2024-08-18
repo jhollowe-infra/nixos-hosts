@@ -2,6 +2,9 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
+# NixOS-WSL specific options are documented on the NixOS-WSL repository:
+# https://github.com/nix-community/NixOS-WSL
+
 { config, pkgs, ... }:
 
 let
@@ -12,18 +15,20 @@ let
   };
 in
 {
-  imports =
-    [
-      # # Include the results of the hardware scan.
-      # ./hardware-configuration.nix
-      # ./network.nix
+  imports = [
+    # # Include the results of the hardware scan.
+    # ./hardware-configuration.nix
+    # ./network.nix
 
-      "${nixos-common}/user"
-      "${nixos-common}/workloads/interactive.nix"
-      "${nixos-common}/workloads/ssh.nix"
-      "${nixos-common}/env/ny_time.nix"
-      "${nixos-common}/env/en_us_utf8.nix"
-    ];
+    "${nixos-common}/user"
+    "${nixos-common}/workloads/interactive.nix"
+    "${nixos-common}/workloads/ssh.nix"
+    "${nixos-common}/env/ny_time.nix"
+    "${nixos-common}/env/en_us_utf8.nix"
+  ];
+
+  wsl.enable = true;
+  wsl.defaultUser = "jhollowe";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
