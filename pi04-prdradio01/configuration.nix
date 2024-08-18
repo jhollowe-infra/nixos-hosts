@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   nixos-common = builtins.fetchGit {
@@ -18,6 +18,9 @@ in
       ./hardware-configuration.nix
       ./network.nix
 
+      ./gps.nix
+
+      # Temporary
       "${nixos-common}/workloads/deep_diag.nix"
       "${nixos-common}/fs/zram_swap.nix"
 
@@ -36,5 +39,14 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
+
+  # needed for meshtasticd build
+  nix.settings.sandbox = false;
+
+  environment.systemPackages = with pkgs; [
+    tio
+  ];
+
+  networking.firewall.enable = lib.mkForce false;
 
 }
