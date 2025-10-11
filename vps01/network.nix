@@ -37,15 +37,4 @@ in
     address = "2001:470:66:14e::1";
     interface = "${ipv6_tunnel_name}";
   };
-
-
-  # Open ports in the firewall.
-  networking.firewall = {
-    enable = true;
-    allowPing = true;
-
-    # ports exposed by docker override these settings
-    # allowedTCPPorts = [ ];
-    # allowedUDPPorts = [ ];
-  };
 }

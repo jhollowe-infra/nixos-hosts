@@ -3,7 +3,7 @@
 
   inputs = {
     # Nixpkgs Stable - https://github.com/NixOS/nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
 
     # Nixpkgs Unstable
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
@@ -13,7 +13,7 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
     # Home Manager - https://github.com/nix-community/home-manager
-    # home-manager.url = "github:nix-community/home-manager/release-24.05";
+    # home-manager.url = "github:nix-community/home-manager/release-24.11";
     # home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Atomic, declarative, and reproducible secret provisioning for NixOS based on sops.

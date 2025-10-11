@@ -4,7 +4,7 @@ let
   nixos-common = builtins.fetchGit {
     url = "https://github.com/jhollowe-infra/nixos-common.git";
     ref = "main";
-    rev = "b2da754603d7b53b3fc245a17322d6688755aa87";
+    rev = "5a64ff89e68de9f089395a01b97733c293431658";
   };
 in
 {
@@ -13,13 +13,16 @@ in
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./disko.nix
+      ./docker.nix
       ./network.nix
+      ./tailscale.nix
 
       "${nixos-common}/user"
       "${nixos-common}/workloads/interactive.nix"
       "${nixos-common}/workloads/ssh.nix"
       "${nixos-common}/env/ny_time.nix"
       "${nixos-common}/env/en_us_utf8.nix"
+      "${nixos-common}/net/default.nix"
     ];
 
   # users.users.jhollowe.password = "areallygreatpassword";
