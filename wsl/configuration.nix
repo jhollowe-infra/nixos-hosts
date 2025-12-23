@@ -22,6 +22,7 @@ in
 
     "${nixos-common}/user"
     "${nixos-common}/workloads/interactive.nix"
+    "${nixos-common}/workloads/deep_diag.nix"
     "${nixos-common}/workloads/ssh.nix"
     "${nixos-common}/env/ny_time.nix"
     "${nixos-common}/env/en_us_utf8.nix"
