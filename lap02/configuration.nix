@@ -1,12 +1,5 @@
-{ pkgs, ... }:
+{ nixos-common, pkgs, ... }:
 
-let
-  nixos-common = builtins.fetchGit {
-    url = "https://github.com/jhollowe-infra/nixos-common.git";
-    ref = "main";
-    rev = "b2da754603d7b53b3fc245a17322d6688755aa87";
-  };
-in
 {
   imports =
     [
@@ -16,11 +9,11 @@ in
       ./network.nix
 
       ./gui.nix
-      "${nixos-common}/user"
-      "${nixos-common}/workloads/interactive.nix"
-      "${nixos-common}/workloads/ssh.nix"
-      "${nixos-common}/env/ny_time.nix"
-      "${nixos-common}/env/en_us_utf8.nix"
+      nixos-common.nixosModules.user
+      nixos-common.nixosModules.workloads-interactive
+      nixos-common.nixosModules.workloads-ssh
+      nixos-common.nixosModules.env-ny-time
+      nixos-common.nixosModules.env-en-us-utf8
     ];
 
   users.users.jhollowe.password = "password";

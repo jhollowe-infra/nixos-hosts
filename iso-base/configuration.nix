@@ -1,15 +1,8 @@
-{ lib, ... }:
-let
-  nixos-common = builtins.fetchGit {
-    url = "https://github.com/jhollowe-infra/nixos-common.git";
-    ref = "main";
-    rev = "a62bd558e56243e1bf051b4fee1b72891dd560da";
-  };
-in
+{ nixos-common, lib, ... }:
 {
   imports = [
-    "${nixos-common}/workloads/diag.nix"
-    "${nixos-common}/workloads/deep_diag.nix"
+    nixos-common.nixosModules.workloads-diag
+    nixos-common.nixosModules.workloads-deep-diag
   ];
 
   services.getty.helpLine = lib.mkForce ''

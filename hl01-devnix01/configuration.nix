@@ -1,20 +1,13 @@
-{ modulesPath, lib, pkgs, ... }:
+{ nixos-common, modulesPath, lib, pkgs, ... }:
 
-let
-  nixos-common = builtins.fetchGit {
-    url = "https://github.com/jhollowe-infra/nixos-common.git";
-    ref = "main";
-    rev = "a62bd558e56243e1bf051b4fee1b72891dd560da";
-  };
-in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
     ./disko.nix
-    "${nixos-common}/user"
-    "${nixos-common}/env/qemu.nix"
-    "${nixos-common}/workloads/interactive.nix"
+    nixos-common.nixosModules.user
+    nixos-common.nixosModules.env-qemu
+    nixos-common.nixosModules.workloads-interactive
   ];
 
   # boot.loader.systemd-boot.enable = true;
