@@ -2,4 +2,4 @@
 
 host=${1:-$(hostname)}
 
-sudo nixos-rebuild build --flake .#${host} --impure --show-trace
+nixos-rebuild build --flake ".#${host}" --show-trace

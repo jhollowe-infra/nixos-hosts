@@ -2,4 +2,5 @@
 
 host=${1:-test}
 
-nix run github:nix-community/nixos-anywhere --show-trace -- --flake .#${host} --vm-test
+# nixos-anywhere is pinned by flake.lock (inputs.nixos-anywhere)
+nix run --show-trace --inputs-from . nixos-anywhere -- --flake ".#${host}" --vm-test

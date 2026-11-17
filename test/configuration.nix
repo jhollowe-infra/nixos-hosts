@@ -1,6 +1,5 @@
 { modulesPath, lib, pkgs, ... }: {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
     ./disko.nix
   ];
@@ -10,6 +9,8 @@
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
+  networking.hostName = "test";
+
   services.openssh.enable = true;
 
   environment.systemPackages = map lib.lowPrio [

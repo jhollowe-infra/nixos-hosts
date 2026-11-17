@@ -2,12 +2,12 @@
 
 {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
     ./disko.nix
     nixos-common.nixosModules.user
     nixos-common.nixosModules.env-qemu
     nixos-common.nixosModules.workloads-interactive
+    nixos-common.nixosModules.fs-nix-gc
   ];
 
   # boot.loader.systemd-boot.enable = true;
@@ -18,6 +18,8 @@
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
+
+  networking.hostName = "hl01-devnix01";
 
   services.openssh.enable = true;
   services.openssh.settings = {

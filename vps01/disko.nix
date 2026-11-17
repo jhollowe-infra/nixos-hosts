@@ -72,7 +72,7 @@ in
         };
 
         options = {
-          # ashift = "12"; # 4096 sector size (recommended)
+          ashift = "12"; # 4096 sector size (recommended)
           autotrim = "on";
         };
         postCreateHook = "zfs list -t snapshot -H -o name | grep -E '^${pool_name}@${starter_snapshot}$' || zfs snapshot -r ${pool_name}@${starter_snapshot}";
@@ -106,6 +106,7 @@ in
             mountpoint = "/nix";
             options.mountpoint = "/nix";
             options."com.sun:auto-snapshot" = "false";
+            options.atime = "off";
             options.readonly = "off"; #prevent inheriting from parent
           };
         };

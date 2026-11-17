@@ -9,7 +9,11 @@
       ./network.nix
       nixos-hardware.nixosModules.lenovo-thinkpad-t480s
 
-      ./gui.nix
+      nixos-common.nixosModules.desktop
+      nixos-common.nixosModules.desktop-touchpad
+      nixos-common.nixosModules.security-gpg-agent
+      nixos-common.nixosModules.fs-nix-gc
+      nixos-common.nixosModules.fs-zfs-auto-maintenance
       nixos-common.nixosModules.user
       nixos-common.nixosModules.workloads-interactive
       nixos-common.nixosModules.workloads-ssh

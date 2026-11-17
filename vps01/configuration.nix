@@ -14,6 +14,8 @@
       nixos-common.nixosModules.env-ny-time
       nixos-common.nixosModules.env-en-us-utf8
       nixos-common.nixosModules.fs-zram-swap
+      nixos-common.nixosModules.fs-nix-gc
+      nixos-common.nixosModules.fs-zfs-auto-maintenance
     ];
 
   # users.users.jhollowe.password = "areallygreatpassword";

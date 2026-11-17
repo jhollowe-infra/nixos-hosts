@@ -39,6 +39,11 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
 
+    # nixos-anywhere (pinned by flake.lock; used by run_vmtest.sh)
+    nixos-anywhere.url = "github:nix-community/nixos-anywhere";
+    nixos-anywhere.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-anywhere.inputs.disko.follows = "disko";
+
     # personal common configurations
     nixos-common.url = "github:jhollowe-infra/nixos-common";
   };

@@ -6,19 +6,19 @@
     {
       "label": "nixos-rebuild test",
       "type": "shell",
-      "command": "sudo nixos-rebuild --show-trace --impure test --flake .",
+      "command": "sudo nixos-rebuild --show-trace test --flake .",
       "problemMatcher": []
     },
     {
       "label": "Clean/GC Nix Store",
       "type": "shell",
-      "command": "nix-store --gc",
+      "command": "nix-collect-garbage",
       "problemMatcher": []
     },
     {
       "label": "Clean & Optimize Nix Store",
       "type": "shell",
-      "command": "nix-store --gc; echo \"Optimizing...\" ; nix-store --optimise",
+      "command": "nix-collect-garbage; echo \"Optimizing...\" ; nix store optimise",
       "problemMatcher": []
     }
   ]
