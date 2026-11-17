@@ -57,6 +57,9 @@ in
           canmount = "off"; # don't mount root FS, mount datasets
 
           compression = "zstd";
+          acltype = "posixacl";
+          xattr = "sa";
+          dnodesize = "auto";
           "com.sun:auto-snapshot" = "false";
         };
 

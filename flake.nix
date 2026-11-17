@@ -49,41 +49,19 @@
   };
 
   outputs = { self, nixpkgs, disko, nixos-common, nixos-hardware, ... }:
-    {
-
-      nixosConfigurations = {
-        lap02 = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit nixos-common nixos-hardware; };
-          modules = [
-            disko.nixosModules.disko
-            ./lap02/configuration.nix
-          ];
-        };
-        test = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit nixos-common; };
-          modules = [
-            disko.nixosModules.disko
-            ./test/configuration.nix
-          ];
-        };
-        vps01 = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit nixos-common; };
-          modules = [
-            disko.nixosModules.disko
-            ./vps01/configuration.nix
-          ];
-        };
-        "hl01-devnix01" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit nixos-common; };
-          modules = [
-            disko.nixosModules.disko
-            ./hl01-devnix01/configuration.nix
-          ];
-        };
+    let
+      mkHost = name: nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit nixos-common nixos-hardware; };
+        modules = [
+          { nixpkgs.hostPlatform = "x86_64-linux"; }
+          disko.nixosModules.disko
+          ./${name}/configuration.nix
+        ];
       };
+    in
+    {
+      nixosConfigurations = nixpkgs.lib.genAttrs
+        [ "lap02" "test" "vps01" "hl01-devnix01" ]
+        mkHost;
     };
 }

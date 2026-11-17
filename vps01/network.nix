@@ -41,12 +41,8 @@ in
 
 
   # Open ports in the firewall.
-  networking.firewall = {
-    enable = true;
-    allowPing = true;
-
-    # ports exposed by docker override these settings
-    # allowedTCPPorts = [ ];
-    # allowedUDPPorts = [ ];
-  };
+  # (the firewall is enabled and answers pings by default)
+  # ports exposed by docker override these settings
+  # networking.firewall.allowedTCPPorts = [ ];
+  # networking.firewall.allowedUDPPorts = [ ];
 }
