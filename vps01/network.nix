@@ -10,6 +10,7 @@ in
     hostName = "vps01";
     hostId = "74a9a1ba";
     enableIPv6 = true;
+    useDHCP = false;
     usePredictableInterfaceNames = true;
 
     nameservers = [ "1.1.1.1" "1.0.0.1" ];

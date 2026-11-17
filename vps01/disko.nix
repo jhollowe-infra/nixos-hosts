@@ -8,6 +8,7 @@ in
 {
   # Legacy/BIOS bootloader (grub)
   boot.loader.grub.enable = true;
+  boot.zfs.forceImportRoot = false; # default becomes false in 26.11
   boot.zfs.devNodes = "/dev/disk/by-uuid"; # for some reason vda is not added to the default /dev/disk/by-id
 
   disko.devices = {

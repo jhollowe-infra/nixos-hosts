@@ -3,17 +3,17 @@
 
   inputs = {
     # Nixpkgs Stable - https://github.com/NixOS/nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
     # Nixpkgs Unstable
-    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Disko (Disk Config)
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
     # Home Manager - https://github.com/nix-community/home-manager
-    # home-manager.url = "github:nix-community/home-manager/release-24.05";
+    # home-manager.url = "github:nix-community/home-manager/release-26.05";
     # home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Atomic, declarative, and reproducible secret provisioning for NixOS based on sops.
@@ -37,18 +37,19 @@
 
     # NixOS Hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
 
     # personal common configurations
     nixos-common.url = "github:jhollowe-infra/nixos-common";
   };
 
-  outputs = { self, nixpkgs, disko, nixos-common, ... }:
+  outputs = { self, nixpkgs, disko, nixos-common, nixos-hardware, ... }:
     {
 
       nixosConfigurations = {
         lap02 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit nixos-common; };
+          specialArgs = { inherit nixos-common nixos-hardware; };
           modules = [
             disko.nixosModules.disko
             ./lap02/configuration.nix
