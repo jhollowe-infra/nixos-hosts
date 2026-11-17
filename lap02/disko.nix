@@ -10,6 +10,8 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.zfs.forceImportRoot = false; # default becomes false in 26.11
+
   disko.devices = {
     disk = {
       nvme = {

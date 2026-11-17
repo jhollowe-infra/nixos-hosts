@@ -6,7 +6,6 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    # "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/lenovo/thinkpad/t480s"
   ];
 
   # enable fingerprint service

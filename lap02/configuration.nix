@@ -1,4 +1,4 @@
-{ nixos-common, pkgs, ... }:
+{ nixos-common, nixos-hardware, pkgs, ... }:
 
 {
   imports =
@@ -7,6 +7,7 @@
       ./hardware-configuration.nix
       ./disko.nix
       ./network.nix
+      nixos-hardware.nixosModules.lenovo-thinkpad-t480s
 
       ./gui.nix
       nixos-common.nixosModules.user
