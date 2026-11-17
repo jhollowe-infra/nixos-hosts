@@ -2,22 +2,39 @@
   "nodes": {
     "nixos": {
       "locked": {
-        "lastModified": 1701282334,
-        "narHash": "sha256-MxCVrXY6v4QmfTwIysjjaX0XUhqBbxTWWB4HXtDYsdk=",
-        "owner": "NixOS",
+        "lastModified": 1794756927,
+        "narHash": "sha256-IfuPcOpwC+bYvBdtUhA9hHhY7xV7k9T5LeOTZFiJB4o=",
+        "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "057f9aecfb71c4437d2b27d3323df7f93c010b7e",
+        "rev": "b349185bb79c7cf7ad8ea8c097931730bf473c71",
         "type": "github"
       },
       "original": {
-        "id": "nixpkgs",
-        "ref": "23.11",
-        "type": "indirect"
+        "owner": "nixos",
+        "ref": "nixos-26.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixos-common": {
+      "locked": {
+        "lastModified": 1794867162,
+        "narHash": "sha256-u1x9EzN+y5aKxSZPIQ1qVHK3sz+4y3cdxeuCbwzYMAw=",
+        "owner": "jhollowe-infra",
+        "repo": "nixos-common",
+        "rev": "359b2400cbb1cd61358eee0018439434e62c541e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jhollowe-infra",
+        "repo": "nixos-common",
+        "type": "github"
       }
     },
     "root": {
       "inputs": {
-        "nixos": "nixos"
+        "nixos": "nixos",
+        "nixos-common": "nixos-common"
       }
     }
   },

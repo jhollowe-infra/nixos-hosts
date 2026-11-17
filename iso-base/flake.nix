@@ -1,6 +1,6 @@
 {
   description = "Minimal NixOS installation media";
-  inputs.nixos.url = "nixpkgs/24.05";
+  inputs.nixos.url = "github:nixos/nixpkgs/nixos-26.05";
   inputs.nixos-common.url = "github:jhollowe-infra/nixos-common";
   outputs = { self, nixos, nixos-common }: {
     nixosConfigurations."iso-base" = nixos.lib.nixosSystem {

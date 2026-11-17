@@ -14,6 +14,8 @@
     network using `wpa_cli`. See the NixOS manual for details.
   '';
 
+  boot.zfs.forceImportRoot = false; # default becomes false in 26.11
+
   # use zstd compression for the ISO image
   isoImage.squashfsCompression = "zstd -Xcompression-level 19";
 
